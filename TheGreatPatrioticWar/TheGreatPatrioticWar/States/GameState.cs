@@ -27,9 +27,6 @@ namespace TheGreatPatrioticWar
 			}
 
 
-			Camera.CameraPos += new Vector2f(20 * deltaTime, 20 * deltaTime);
-
-
 
 
 			bobi.Position = Camera.ToWorld(new Vector2f(100, 100));

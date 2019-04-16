@@ -16,7 +16,7 @@ namespace TheGreatPatrioticWar
 
 		public static void Update(float deltaTime)
 		{
-
+			Camera.Update(deltaTime);
 		}
 
 		public static void Draw()
