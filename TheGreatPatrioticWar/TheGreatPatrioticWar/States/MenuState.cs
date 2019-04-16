@@ -4,16 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TGPWServer
+namespace TheGreatPatrioticWar.States
 {
-	public static class Global
+	class MenuState
 	{
-		public enum Faction
-		{
-			AXIS,
-			USSR,
-			ALLIES,
-		}
-
 	}
 }

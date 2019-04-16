@@ -7,7 +7,7 @@ using System.Reflection;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace TGPWServer
+namespace TheGreatPatrioticWar
 {
 	class Settings
 	{
@@ -20,8 +20,8 @@ namespace TGPWServer
 
 
 		//Server settings
-		public int server_port = 18181;
-		public int server_maxClients = 502;
+		public int windowWidth = 500;
+		public int windowHeight = 500;
 
 
 

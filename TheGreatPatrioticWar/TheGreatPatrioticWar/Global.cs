@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace TGPWServer
 {
-	class Grid
+	public static class Global
 	{
-
+		public enum Faction
+		{
+			AXIS,
+			USSR,
+			ALLIES,
+		}
 	}
 }

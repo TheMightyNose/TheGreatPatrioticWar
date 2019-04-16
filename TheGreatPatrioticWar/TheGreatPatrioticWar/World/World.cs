@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SFML.System;
+using SFML.Graphics;
 
-namespace TGPWServer
+namespace TheGreatPatrioticWar
 {
 	static class World
 	{
@@ -19,7 +21,7 @@ namespace TGPWServer
 
 		public static void Draw()
 		{
-
+			Grid.Draw();
 		}
 
 		public static void Daily()
