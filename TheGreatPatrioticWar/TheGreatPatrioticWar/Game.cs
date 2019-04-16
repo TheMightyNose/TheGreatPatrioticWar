@@ -19,7 +19,7 @@ namespace TheGreatPatrioticWar
 
 			window.Closed += (x, y) => window.Close();
 
-			while (true)
+			while (window.IsOpen)
 			{
 				float deltaTime = clock.Restart().AsSeconds();
 				window.DispatchEvents();

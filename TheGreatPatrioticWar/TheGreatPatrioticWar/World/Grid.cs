@@ -10,10 +10,9 @@ namespace TheGreatPatrioticWar
 {
 	static class Grid
 	{
-		public static int width = 500;
-		public static int height = 500;
+		public static int width = 50;
+		public static int height = 50;
 		public static int cellSize = 50;
-
 
 		public static Color gridColor = Color.White;
 

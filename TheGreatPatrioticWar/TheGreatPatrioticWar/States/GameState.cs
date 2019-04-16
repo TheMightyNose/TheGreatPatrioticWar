@@ -10,8 +10,6 @@ namespace TheGreatPatrioticWar
 {
 	class GameState : State
 	{
-
-		RectangleShape bobi = new RectangleShape(new Vector2f(20,20));
 		float timePassedSinceLastDay = 0.0f;
 
 		public override void Update(float deltaTime)
@@ -25,19 +23,10 @@ namespace TheGreatPatrioticWar
 				timePassedSinceLastDay -= World.secondsPerDay;
 				Daily();
 			}
-
-
-
-
-			bobi.Position = Camera.ToWorld(new Vector2f(100, 100));
-			bobi.FillColor = Color.Red;
-
-			
 		}
 
 		public override void Draw()
 		{
-			Game.window.Draw(bobi);
 			World.Draw();
 		}
 

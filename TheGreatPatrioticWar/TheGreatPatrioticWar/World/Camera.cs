@@ -27,6 +27,13 @@ namespace TheGreatPatrioticWar
 			CameraPos += cameraSpeed * cameraMultiplier * time;
 
 			if (CameraPos.X < 0) CameraPos = new Vector2f(0,CameraPos.Y);
+			if (CameraPos.Y < 0) CameraPos = new Vector2f(CameraPos.X,0);
+
+			int w = Settings.Current.windowWidth;
+			int h = Settings.Current.windowHeight;
+
+			if (CameraPos.X + w > Grid.width * Grid.cellSize) CameraPos = new Vector2f(Grid.width * Grid.cellSize - w,CameraPos.Y);
+			if (CameraPos.Y + h > Grid.height * Grid.cellSize) CameraPos = new Vector2f(CameraPos.X,Grid.height * Grid.cellSize - h);
 
 		}
 
