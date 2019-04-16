@@ -29,7 +29,5 @@ namespace TheGreatPatrioticWar
 				window.Clear(Color.Black);
 			}
 		}
-
-
 	}
 }

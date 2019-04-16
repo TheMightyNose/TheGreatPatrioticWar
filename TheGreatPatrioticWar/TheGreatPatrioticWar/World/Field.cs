@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace TGPWServer
+namespace TheGreatPatrioticWar
 {
 	class Field
 	{
+		List<Army> defenders;
+		List<Army> attackers;
+
+		Global.Faction owner;
+
+		float civilians;
+		int droppedBombs;
+		int craters;
+
+		//enum terrain
 	}
 }

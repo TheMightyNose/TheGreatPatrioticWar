@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TGPWServer
+namespace TheGreatPatrioticWar
 {
 	public static class Global
 	{
@@ -12,7 +12,7 @@ namespace TGPWServer
 		{
 			AXIS,
 			USSR,
-			ALLIES,
+			FINLAND,
 		}
 	}
 }
