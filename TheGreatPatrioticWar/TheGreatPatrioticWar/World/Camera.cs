@@ -59,9 +59,32 @@ namespace TheGreatPatrioticWar
 
 		public static Vector2f CameraPos = new Vector2f(0, 0);
 
-		public static Vector2f ToWorld(Vector2f v)
+
+        public static bool DrawOnWorld(Shape s)
+        {
+            int Marign = -Grid.cellSize;
+            var oldPos = s.Position;
+            s.Position = ToWorld(s.Position);
+            var bounds = s.GetGlobalBounds();
+
+            if (bounds.Left + bounds.Width < Settings.Current.windowWidth - Marign
+                && bounds.Left > 0 + Marign
+                && bounds.Top + bounds.Height < Settings.Current.windowHeight - Marign
+                && bounds.Top > 0 + Marign)
+            {
+
+                Game.window.Draw(s);
+                return true;
+               
+            }
+            s.Position = oldPos;
+            return false;
+        }
+
+
+		public static Vector2f ToWorld(Vector2f pos)
 		{
-			return v - CameraPos;
+            return pos - CameraPos;
 		}
 	}
 }

@@ -27,12 +27,12 @@ namespace TheGreatPatrioticWar
 		{
 			Camera.Update(deltaTime);
 		}
-
+		
 		public static void Draw()
 		{
 			worldSprite.Position = Camera.ToWorld(new Vector2f(0,0));
 			Game.window.Draw(worldSprite);
-			Grid.Draw(Color.Red);
+			Grid.Draw(new Color(100,100,100));
 		}
 
 		public static void Daily()
