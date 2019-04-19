@@ -4,14 +4,14 @@ namespace TheGreatPatrioticWar
 {
 	public class Army
 	{
-		Global.Faction faction;
-		float infantry;
-		float tanks;
+		public Global.Faction faction;
+		public float infantry;
+		public float tanks;
 
-		int daysUntilArival = 0;
+		public int daysUntilArival = 0;
 		//destination
 
-		bool dead = false;
+		public bool dead = false;
 
 		public Army(Global.Faction faction, int infantry, int tanks)
 		{

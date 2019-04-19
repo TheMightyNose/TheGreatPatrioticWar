@@ -32,7 +32,9 @@ namespace TheGreatPatrioticWar
 				{
                     fields[x, y] = new Field(x * cellSize, y * cellSize)
                     {
-                        civilians = bob.Next(0, 2) * 50
+                        civilians = bob.Next(0, 2) * 50,
+                        armies = new List<Army>() { new Army(Global.Faction.AXIS, bob.Next(0,2255), 1), new Army(Global.Faction.FINLAND,34,12538)},
+                  
                     };
                 }
 			}
@@ -73,7 +75,9 @@ namespace TheGreatPatrioticWar
         {
             int offset = 20;
             var gridPos = Camera.CameraToWorld(Camera.mousePos) / cellSize;
-
+            tekst.FillColor = Color.Red;
+            tekst.OutlineThickness = 2;
+            tekst.OutlineColor = Color.Green;
             if (gridPos.X < width && gridPos.X > 0 && gridPos.Y < height && gridPos.Y > 0)
             {
                 tekst.Position = Camera.mousePos + new Vector2f(offset,offset);

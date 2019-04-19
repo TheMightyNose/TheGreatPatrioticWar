@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SFML.Graphics;
+using System.Linq;
 using SFML.System;
 
 namespace TheGreatPatrioticWar
@@ -28,7 +29,7 @@ namespace TheGreatPatrioticWar
 
 		public void Draw()
 		{
-			bob.FillColor = new Color((byte)civilians, 0, 0);
+			bob.FillColor = new Color((byte)civilians, 0, 0,230);
             bob.Position = new Vector2f(x, y);
 			bob.Size = new Vector2f(Grid.cellSize, Grid.cellSize);
 
@@ -38,7 +39,16 @@ namespace TheGreatPatrioticWar
 
         public override string ToString()
         {
-            return $"Civ: {civilians} {Environment.NewLine}";
+            var nl = Environment.NewLine;
+            var armyInfo = string.Concat(armies.Select(army =>
+            {
+                return $"Army: {nl}" + string.Concat(typeof(Army).GetFields().Select(field =>
+                {
+                    return $" - {field.Name} = {field.GetValue(army)}{nl}";
+                }));
+            }));
+
+            return $"Armies: {nl}" + armyInfo;
         }
 
 
