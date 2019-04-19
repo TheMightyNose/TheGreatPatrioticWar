@@ -24,6 +24,10 @@ namespace TheGreatPatrioticWar
 		{
 			foreach(Army army in armies)
 			{
+                if (army.infantry == 0 && army.tanks == 0)
+                {
+                    army.dead = true;
+                }
 				if (army.daysUntilArival == 0 && !army.dead)
 				{
 					foreach (Army secondArmy in armies)

@@ -11,7 +11,7 @@ namespace TheGreatPatrioticWar
 		public int x;
 		public int y;
 
-		public List<Army> armies;
+		public List<Army> armies = new List<Army>();
 
 		public Global.Faction owner;
 
