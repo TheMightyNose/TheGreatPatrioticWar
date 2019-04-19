@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.System;
 
@@ -27,16 +28,21 @@ namespace TheGreatPatrioticWar
 
 		public void Draw()
 		{
-			bob.FillColor = new Color((byte)civilians, 0, 0,100);
+			bob.FillColor = new Color((byte)civilians, 0, 0);
             bob.Position = new Vector2f(x, y);
 			bob.Size = new Vector2f(Grid.cellSize, Grid.cellSize);
 
-            Camera.DrawOnWorld(bob);
+            Camera.DrawOnCamera(bob);
 			
 		}
 
+        public override string ToString()
+        {
+            return $"Civ: {civilians} {Environment.NewLine}";
+        }
 
-		//enum terrain
 
-	}
+        //enum terrain
+
+    }
 }

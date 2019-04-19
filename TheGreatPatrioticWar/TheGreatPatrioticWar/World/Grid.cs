@@ -14,11 +14,16 @@ namespace TheGreatPatrioticWar
 		public static int height = 100;
 		public static int cellSize = 20;
 
-		public static Field[,] fields;
+        static Text tekst = new Text();
+        static Font bobtabor = new Font(@"C:\Windows\Fonts\Arial.ttf");
+
+		public static Field[,] fields = new Field[width, height];
 
 		static Grid()
 		{
-			fields = new Field[width, height];
+            tekst.Font = bobtabor;
+            tekst.CharacterSize = (char)"!Bob"[0];
+
 			Random bob = new Random();
 
 			for (int y = 0; y < height; ++y)
@@ -33,14 +38,15 @@ namespace TheGreatPatrioticWar
 			}
 		}
 
+
 		public static void Draw(Color gridColor)
         { 
             
 			for (int x = 0; x < width; ++x)
 			{
 				var vs = new[] {
-					new Vertex(Camera.ToWorld(new Vector2f(x * cellSize,0)), gridColor),
-					new Vertex(Camera.ToWorld(new Vector2f(x * cellSize,height*cellSize)), gridColor),
+					new Vertex(Camera.WorldToCamera(new Vector2f(x * cellSize,0)), gridColor),
+					new Vertex(Camera.WorldToCamera(new Vector2f(x * cellSize,height*cellSize)), gridColor),
 				};
 				Game.window.Draw(vs, 0, (uint)vs.Length, PrimitiveType.Lines);
 			}
@@ -48,8 +54,8 @@ namespace TheGreatPatrioticWar
 			for (int y = 0; y < height; ++y)
 			{
 				var vs = new[] {
-					new Vertex(Camera.ToWorld(new Vector2f(0, y * cellSize)), gridColor),
-					new Vertex(Camera.ToWorld(new Vector2f(width*cellSize, y * cellSize)), gridColor),
+					new Vertex(Camera.WorldToCamera(new Vector2f(0, y * cellSize)), gridColor),
+					new Vertex(Camera.WorldToCamera(new Vector2f(width*cellSize, y * cellSize)), gridColor),
 				};
 				Game.window.Draw(vs, 0, (uint)vs.Length, PrimitiveType.Lines);
 			}
@@ -62,6 +68,20 @@ namespace TheGreatPatrioticWar
 				}
 			}
 		}
+
+        public static void DrawMouseInfo()
+        {
+            int offset = 20;
+            var gridPos = Camera.CameraToWorld(Camera.mousePos) / cellSize;
+
+            if (gridPos.X < width && gridPos.X > 0 && gridPos.Y < height && gridPos.Y > 0)
+            {
+                tekst.Position = Camera.mousePos + new Vector2f(offset,offset);
+                tekst.DisplayedString = fields[(int)gridPos.X, (int)gridPos.Y].ToString();
+                Game.window.Draw(tekst);
+            }
+
+        }
 
 	}
 }

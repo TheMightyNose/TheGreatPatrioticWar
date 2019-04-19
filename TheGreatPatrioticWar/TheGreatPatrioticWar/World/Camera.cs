@@ -14,6 +14,7 @@ namespace TheGreatPatrioticWar
 
 		static Vector2f cameraSpeed = new Vector2f(0,0);
 		static float cameraMultiplier = 500;
+        public static Vector2f mousePos = new Vector2f(0, 0);
 
 		static readonly int moveMargin = 50;
 
@@ -41,6 +42,8 @@ namespace TheGreatPatrioticWar
 		public static void OnMouseMoved(object sender, MouseMoveEventArgs blob)
 		{
 
+            mousePos = new Vector2f(blob.X, blob.Y);
+
 			cameraSpeed = new Vector2f(0, 0);
 			if (!Game.window.HasFocus())
 			{
@@ -60,11 +63,11 @@ namespace TheGreatPatrioticWar
 		public static Vector2f CameraPos = new Vector2f(0, 0);
 
 
-        public static bool DrawOnWorld(Shape s)
+        public static bool DrawOnCamera(Shape s)
         {
             int Marign = -Grid.cellSize;
             var oldPos = s.Position;
-            s.Position = ToWorld(s.Position);
+            s.Position = WorldToCamera(s.Position);
             var bounds = s.GetGlobalBounds();
 
             if (bounds.Left + bounds.Width < Settings.Current.windowWidth - Marign
@@ -82,9 +85,15 @@ namespace TheGreatPatrioticWar
         }
 
 
-		public static Vector2f ToWorld(Vector2f pos)
+		public static Vector2f WorldToCamera(Vector2f pos)
 		{
             return pos - CameraPos;
 		}
+
+        public static Vector2f CameraToWorld(Vector2f pos)
+        {
+            return pos + CameraPos;
+        }
+
 	}
 }

@@ -30,9 +30,10 @@ namespace TheGreatPatrioticWar
 		
 		public static void Draw()
 		{
-			worldSprite.Position = Camera.ToWorld(new Vector2f(0,0));
+			worldSprite.Position = Camera.WorldToCamera(new Vector2f(0,0));
 			Game.window.Draw(worldSprite);
 			Grid.Draw(new Color(100,100,100));
+            Grid.DrawMouseInfo();
 		}
 
 		public static void Daily()
