@@ -15,13 +15,16 @@ namespace TheGreatPatrioticWar
 
 		public List<Army> armies = new List<Army>();
 
-		public Global.Faction owner;
+		public Faction owner;
 
 		public float civilians;
 		public int droppedBombs;
 		public int craters;
 
-		public Field(int x, int y)
+
+        //enum terrain
+
+        public Field(int x, int y)
 		{
 			this.x = x;
 			this.y = y;
@@ -37,6 +40,11 @@ namespace TheGreatPatrioticWar
 			
 		}
 
+        public void Combat(List<Army> armies, Global.Faction defender)
+        {
+
+        }
+
         public override string ToString()
         {
             var nl = Environment.NewLine;
@@ -50,9 +58,5 @@ namespace TheGreatPatrioticWar
 
             return $"Civilians: {civilians}{nl}Armies: {nl}" + armyInfo;
         }
-
-
-        //enum terrain
-
     }
 }
