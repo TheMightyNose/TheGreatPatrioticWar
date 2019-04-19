@@ -48,7 +48,7 @@ namespace TheGreatPatrioticWar
                 }));
             }));
 
-            return $"Armies: {nl}" + armyInfo;
+            return $"Civilians: {civilians}{nl}Armies: {nl}" + armyInfo;
         }
 
 
