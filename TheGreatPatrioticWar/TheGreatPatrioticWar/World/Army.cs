@@ -4,27 +4,35 @@ namespace TheGreatPatrioticWar
 {
 	public class Army
 	{
-		public Global.Faction faction;
-		public float infantry;
-		public float tanks;
+        const int tankWeight = 10;
+
+		public Faction faction;
+        private float _infantry;
+        private float _tanks;
+		public float Infantry { get =>_infantry; set => _infantry = value < 0 ? 0 : value; }
+		public float Tanks { get => _tanks; set => _tanks = value < 0 ? 0 : value; }
 
 		public int daysUntilArival = 0;
 		//destination
 
 		public bool dead = false;
 
-		public Army(Global.Faction faction, int infantry, int tanks)
+        public float InfantryWeight { get => Infantry; }
+        public float TanksWeight { get => Tanks * tankWeight; }
+        public float Weight { get => InfantryWeight + TanksWeight; }
+
+		public Army(Faction faction, int infantry, int tanks)
 		{
 			this.faction = faction;
-			this.infantry = infantry;
-			this.tanks = tanks;
+			Infantry = infantry;
+			Tanks = tanks;
 		}
 
 		public static List<Army> MergeArmies(List<Army> armies)
 		{
 			foreach(Army army in armies)
 			{
-                if (army.infantry == 0 && army.tanks == 0)
+                if (army.Infantry == 0 && army.Tanks == 0)
                 {
                     army.dead = true;
                 }
@@ -34,8 +42,8 @@ namespace TheGreatPatrioticWar
 					{
 						if (army != secondArmy && army.faction == secondArmy.faction && secondArmy.daysUntilArival == 0 && !secondArmy.dead)
 						{
-							army.infantry += secondArmy.infantry;
-							army.tanks += secondArmy.tanks;
+							army.Infantry += secondArmy.Infantry;
+							army.Tanks += secondArmy.Tanks;
 
 							secondArmy.dead = true;
 						}

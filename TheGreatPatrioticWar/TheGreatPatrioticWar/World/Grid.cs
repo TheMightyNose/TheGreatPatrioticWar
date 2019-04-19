@@ -22,7 +22,7 @@ namespace TheGreatPatrioticWar
 		static Grid()
 		{
             tekst.Font = bobtabor;
-            tekst.CharacterSize = (char)"!Bob"[0];
+            tekst.CharacterSize = "!Bob"[0];
 
 			Random bob = new Random();
 
@@ -33,12 +33,12 @@ namespace TheGreatPatrioticWar
                     fields[x, y] = new Field(x * cellSize, y * cellSize)
                     {
                         civilians = bob.Next(0, 2) * 50,
-                        armies = new List<Army>() { new Army(Global.Faction.AXIS, bob.Next(0,2255), 1), new Army(Global.Faction.FINLAND,34,12538)},
+                        armies = new List<Army>() { new Army(Faction.Germany, bob.Next(0,2255), 1), new Army(Faction.Finland,34,12538)},
                   
                     };
                 }
 			}
-		}
+        }
 
 
 		public static void Draw(Color gridColor)
