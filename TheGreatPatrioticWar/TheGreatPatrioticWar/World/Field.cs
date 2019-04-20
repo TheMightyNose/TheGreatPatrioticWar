@@ -85,9 +85,6 @@ namespace TheGreatPatrioticWar
 
                     defender.Tanks -= attackerAttack * defender.TanksWeight / defenderWeight/defenderTankDefense;
                     attacker.Tanks -= defenderAttack * attacker.TanksWeight / attackerWeight/attackerTankDefense;
-
-                    //Console.WriteLine(defender.Infantry);
-                    //Console.WriteLine(attacker.Infantry);
                 }
             }
         }
@@ -98,6 +95,11 @@ namespace TheGreatPatrioticWar
             var armyInfo = string.Concat(armies.Select(army =>
             {
                 return $"Army: {nl}" + string.Concat(typeof(Army).GetFields().Select(field =>
+                {
+                    return $" - {field.Name} = {field.GetValue(army)}{nl}";
+                }))
+                + string.Concat
+                (typeof(Army).GetProperties().Select(field =>
                 {
                     return $" - {field.Name} = {field.GetValue(army)}{nl}";
                 }));
