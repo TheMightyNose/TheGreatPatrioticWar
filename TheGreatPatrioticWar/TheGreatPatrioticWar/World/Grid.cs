@@ -30,14 +30,19 @@ namespace TheGreatPatrioticWar
 			{
 				for (int x  = 0; x < width; ++x)
 				{
-                    fields[x, y] = new Field(x * cellSize, y * cellSize)
+                    fields[x, y] = new Field(x * cellSize, y * cellSize, Faction.Finland)
                     {
                         civilians = bob.Next(0, 2) * 50,
-                        armies = new List<Army>() { new Army(Faction.Germany, bob.Next(0,2255), 1), new Army(Faction.Finland,34,12538)},
+                        armies = new List<Army>() { new Army(Faction.Germany, bob.Next(0,2255), 1), new Army(Faction.Finland,34,1)},
                   
                     };
                 }
 			}
+            fields[1, 1].armies.Add(new Army(Faction.USSR, 1000, 20));
+
+            fields[1, 1].armies.Add(new Army(Faction.USSR, 1000, 20));
+
+            fields[1, 1].armies.Add(new Army(Faction.USSR, 1000, 20));
         }
 
 

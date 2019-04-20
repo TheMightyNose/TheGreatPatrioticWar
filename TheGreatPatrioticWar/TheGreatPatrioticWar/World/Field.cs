@@ -21,10 +21,9 @@ namespace TheGreatPatrioticWar
 		public int droppedBombs = 0;
         public int craters = 0;
 
-
         //enum terrain
 
-        public Field(int x, int y, Faction owner = null)
+        public Field(int x, int y, Faction owner)
 		{
             this.owner = owner;
 			this.x = x;
@@ -47,7 +46,7 @@ namespace TheGreatPatrioticWar
             float attackerWeight = 0;
             List<Army> defenderArmies = new List<Army>();
             List<Army> attackerArmies = new List<Army>();
-
+            
             foreach(Army army in armies)
             {
                 if (army.faction.Alliance == owner.Alliance)
@@ -75,17 +74,20 @@ namespace TheGreatPatrioticWar
                 {
                     float attackerInfantryDefense = 1.0f;
                     float defenderInfantryDefense = 1.0f;
-                    float attackerTankDefense = 10.0f;
-                    float defenderTankDefense = 10.0f;
+                    float attackerTankDefense = defender.faction.TankDefense;
+                    float defenderTankDefense = defender.faction.TankDefense;
 
                     float attackerAttack = attacker.Infantry * attacker.faction.InfantryDamage + attacker.Tanks * attacker.faction.TankDamage;
                     float defenderAttack = defender.Infantry * defender.faction.InfantryDamage + attacker.Tanks * attacker.faction.TankDamage;
 
-                    defender.Infantry -= attackerAttack * defender.InfantryWeight/defenderWeight/defenderInfantryDefense;
+                    defender.Infantry -= attackerAttack * defender.InfantryWeight/defenderWeight/defenderInfantryDefense; 
                     attacker.Infantry -= defenderAttack * attacker.InfantryWeight/attackerWeight/attackerInfantryDefense;
 
                     defender.Tanks -= attackerAttack * defender.TanksWeight / defenderWeight/defenderTankDefense;
                     attacker.Tanks -= defenderAttack * attacker.TanksWeight / attackerWeight/attackerTankDefense;
+
+                    //Console.WriteLine(defender.Infantry);
+                    //Console.WriteLine(attacker.Infantry);
                 }
             }
         }
@@ -102,6 +104,12 @@ namespace TheGreatPatrioticWar
             }));
 
             return $"Civilians: {civilians}{nl}Armies: {nl}" + armyInfo;
+        }
+
+        public void Daily()
+        {
+            Army.MergeArmies(armies);
+            Combat();
         }
     }
 }

@@ -38,6 +38,10 @@ namespace TheGreatPatrioticWar
 
 		public static void Daily()
 		{
+            foreach(Field field in Grid.fields)
+            {
+                field.Daily();
+            }
 			++CurrentDay;
 		}
 

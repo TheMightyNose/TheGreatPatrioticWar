@@ -9,6 +9,7 @@
 
         abstract public float InfantryDamage { get; }
         abstract public float TankDamage { get; }
+        abstract public float TankDefense { get; }
 
         public static Faction USSR = new USSR();
         public static Faction Germany = new Germany();
