@@ -25,6 +25,8 @@ namespace TheGreatPatrioticWar
 				window.DispatchEvents();
 				StateHandler.Update(deltaTime);
 				StateHandler.Draw();
+
+                
 				window.Display();
 				window.Clear(Color.Black);
 			}

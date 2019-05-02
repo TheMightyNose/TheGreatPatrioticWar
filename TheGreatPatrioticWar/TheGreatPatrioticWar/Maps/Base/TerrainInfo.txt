@@ -1,3 +1,5 @@
-#Desert
-isWater = false
-bob5 = yes
+//Config file for terrain
+#Desert //Very nice
+isWater = true //Nice too
+bob5 = yes //Very nice
+swimmingPeople = 9.4

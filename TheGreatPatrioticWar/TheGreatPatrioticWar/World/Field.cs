@@ -16,7 +16,7 @@ namespace TheGreatPatrioticWar
 		public List<Army> armies = new List<Army>();
 
 		public Faction owner;
-        public Terrain terrain;
+        public Terrain terrain = new Terrain();
 
         public string tagName = string.Empty;
 
@@ -35,7 +35,14 @@ namespace TheGreatPatrioticWar
 
 		public void Draw()
 		{
-			bob.FillColor = new Color((byte)(armies.Where(x => x.faction == Faction.USSR).Count() * 255), (byte)(armies.Where(x => x.faction == Faction.Germany).Count() * 255), (byte)(armies.Where(x => x.faction == Faction.Finland).Count() * 255), (byte)(civilians+75));
+            if (!terrain.isWater)
+            {
+                bob.FillColor = new Color((byte)(armies.Where(x => x.faction == Faction.USSR).Count() * 255), (byte)(armies.Where(x => x.faction == Faction.Germany).Count() * 255), (byte)(armies.Where(x => x.faction == Faction.Finland).Count() * 255), (byte)(civilians + 75));
+            }
+            else
+            {
+                bob.FillColor = Color.Blue;
+            }
             bob.Position = new Vector2f(x, y);
 			bob.Size = new Vector2f(Grid.cellSize, Grid.cellSize);
 
@@ -108,7 +115,7 @@ namespace TheGreatPatrioticWar
                 }));
             }));
 
-            return $"Civilians: {civilians}{nl}Armies: {nl}" + armyInfo;
+            return $"SwimmingPeople : {terrain.swimmingPeople}{nl}{tagName}{nl}Civilians: {civilians}{nl}Armies: {nl}" + armyInfo;
         }
 
         public void Daily()

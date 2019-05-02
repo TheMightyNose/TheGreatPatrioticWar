@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Reflection;
 
 namespace TheGreatPatrioticWar
 {
@@ -22,12 +23,15 @@ namespace TheGreatPatrioticWar
 
             
                 //Read all the type of terrains 
-                var data = File.ReadAllLines("TerrainInfo.txt"); //MAKE THIS SOFT CODED
+                var data = File.ReadAllLines("TerrainInfo.txt").Select(line => string.Concat(line.Replace("//","@").TakeWhile(ch => ch != '@').ToArray())).ToArray(); //MAKE THIS SOFT CODED
 
 
                 string currentTerrain = "";
                 foreach (var i in data)
                 {
+                    //if (i.StartsWith("//"))
+                    //    continue;
+
                     string line = i.Replace(" ", ""); line = line.Replace("\t", "");
 
                     if (string.IsNullOrWhiteSpace(line))
@@ -79,7 +83,7 @@ namespace TheGreatPatrioticWar
             int pos_tanks = 5;
             int pos_infantry = 6;
 
-            foreach(var i in data)
+            foreach(String i in data)
             {
                 string line = i.Replace(" ", ""); line = line.Replace("\t", "");
 
@@ -101,18 +105,24 @@ namespace TheGreatPatrioticWar
                     if (bob.Infantry > 0 || bob.Tanks > 0)
                         Grid.fields[x, y].armies.Add(bob);
                 }
-                
-                Terrain terrain = new Terrain();  
 
-                foreach(var field in terrain.GetType().GetFields())
+                Terrain terrain = new Terrain();
+
+                var tInstance = terrain.GetType();
+
+                foreach (var field in tInstance.GetFields(BindingFlags.Public | BindingFlags.Instance))
                 {
-                    Console.WriteLine(field);
-                    field.SetValue(terrain, terrainData[subStrings[pos_terrain]][field.Name]); // TODO Dennis magic casting code here
+                    if (terrainData[subStrings[pos_terrain]].Keys.Contains(field.Name))
+                    {
+
+                        Console.WriteLine(field);
+                        Global.AssignFieldWithCast(terrain, field, terrainData[subStrings[pos_terrain]][field.Name]);
+                    }
                 }
 
                 Grid.fields[x, y].terrain = terrain;
                 Grid.fields[x, y].civilians = int.Parse(subStrings[pos_civilians]);
-
+               
             }
 
 

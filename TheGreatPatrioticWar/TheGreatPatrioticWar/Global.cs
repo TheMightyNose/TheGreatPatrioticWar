@@ -9,23 +9,22 @@ namespace TheGreatPatrioticWar
 {
 	public static class Global
 	{
-        /* //Dennis fix deze shit desuwa
-
-        public static void AssignFieldWithCast(Type bob, FieldInfo field,string data)
+        
+        public static void AssignFieldWithCast(object target,FieldInfo joj,string data)
         {
-            switch (field.FieldType.Name)
-            {
-                case "Boolean": sType.GetField(id).SetValue(nSettings, bool.Parse(val)); break;
-                case "Int32": sType.GetField(id).SetValue(nSettings, int.Parse(val, invariant)); break;
-                case "Int64": sType.GetField(id).SetValue(nSettings, long.Parse(val, invariant)); break;
-                case "Single": sType.GetField(id).SetValue(nSettings, float.Parse(val, invariant)); break;
-                case "Double": sType.GetField(id).SetValue(nSettings, double.Parse(val, invariant)); break;
 
-                default: sType.GetField(id).SetValue(nSettings, val); break;
+
+            var invariant = System.Globalization.CultureInfo.InvariantCulture;
+            switch (joj.FieldType.Name)
+            {
+                case "Boolean": joj.SetValue(target, bool.Parse(data)); break;
+                case "Int32": joj.SetValue(target, int.Parse(data, invariant)); break;
+                case "Int64": joj.SetValue(target, long.Parse(data, invariant)); break;
+                case "Single": joj.SetValue(target, float.Parse(data, invariant)); break;
+                case "Double": joj.SetValue(target, double.Parse(data, invariant)); break;
+
+                default: joj.SetValue(target, data); break;
             }
         }
-
-        */
-
 	}
 }
