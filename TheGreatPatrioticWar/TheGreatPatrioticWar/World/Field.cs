@@ -16,12 +16,15 @@ namespace TheGreatPatrioticWar
 		public List<Army> armies = new List<Army>();
 
 		public Faction owner;
+        public Terrain terrain;
+
+        public string tagName = string.Empty;
 
 		public float civilians;
 		public int droppedBombs = 0;
         public int craters = 0;
 
-        //enum terrain
+        //enum terrain schhh
 
         public Field(int x, int y, Faction owner)
 		{
@@ -32,7 +35,7 @@ namespace TheGreatPatrioticWar
 
 		public void Draw()
 		{
-			bob.FillColor = new Color((byte)civilians, 0, 0,230);
+			bob.FillColor = new Color((byte)(armies.Where(x => x.faction == Faction.USSR).Count() * 255), (byte)(armies.Where(x => x.faction == Faction.Germany).Count() * 255), (byte)(armies.Where(x => x.faction == Faction.Finland).Count() * 255), (byte)(civilians+75));
             bob.Position = new Vector2f(x, y);
 			bob.Size = new Vector2f(Grid.cellSize, Grid.cellSize);
 

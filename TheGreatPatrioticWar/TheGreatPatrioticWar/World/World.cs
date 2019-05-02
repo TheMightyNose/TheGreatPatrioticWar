@@ -8,12 +8,12 @@ using SFML.Graphics;
 
 namespace TheGreatPatrioticWar
 {
-	static class World
+	static partial class World
 	{
 		public static Texture worldTexture;
 		public static Sprite worldSprite;
 
-		public readonly static float secondsPerDay = 1f;
+		public readonly static float secondsPerDay = 0.1f;
 
 		public static int CurrentDay { get; private set; } = 0;
 
@@ -21,6 +21,7 @@ namespace TheGreatPatrioticWar
 		{
 			worldTexture = new Texture("..\\..\\TheWorld.png");
 			worldSprite = new Sprite(worldTexture);
+            Load("..\\..\\Maps\\Base");
 		}
 
 		public static void Update(float deltaTime)

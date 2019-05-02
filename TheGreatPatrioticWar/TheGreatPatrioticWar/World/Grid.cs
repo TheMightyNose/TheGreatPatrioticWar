@@ -19,30 +19,29 @@ namespace TheGreatPatrioticWar
 
 		public static Field[,] fields = new Field[width, height];
 
-		static Grid()
-		{
+        static Grid()
+        {
             tekst.Font = bobtabor;
             tekst.CharacterSize = "!Bob"[0];
 
-			Random bob = new Random();
+            Random bob = new Random();
 
-			for (int y = 0; y < height; ++y)
-			{
-				for (int x  = 0; x < width; ++x)
-				{
-                    fields[x, y] = new Field(x * cellSize, y * cellSize, Faction.Finland)
-                    {
-                        civilians = bob.Next(0, 2) * 50,
-                        armies = new List<Army>() { new Army(Faction.Germany, bob.Next(0,2255), 1), new Army(Faction.Finland,34,1)},
-                  
-                    };
+            for (int y = 0; y < height; ++y)
+            {
+                for (int x = 0; x < width; ++x)
+                {
+                    { //fields's sabe supasu
+                        fields[x, y] = new Field(x * cellSize, y * cellSize, null /*aka loser faction*/)
+                        {
+
+
+
+
+
+                        };
+                    }
                 }
-			}
-            fields[1, 1].armies.Add(new Army(Faction.USSR, 1000, 20));
-
-            fields[1, 1].armies.Add(new Army(Faction.USSR, 1000, 20));
-
-            fields[1, 1].armies.Add(new Army(Faction.USSR, 1000, 20));
+            }
         }
 
 

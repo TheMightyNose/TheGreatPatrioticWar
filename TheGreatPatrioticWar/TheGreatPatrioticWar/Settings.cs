@@ -20,7 +20,7 @@ namespace TheGreatPatrioticWar
 
 
 		//Server settings
-		public int windowWidth = 1000;
+		public int windowWidth = 1920;
 		public int windowHeight = 1000;
 
 

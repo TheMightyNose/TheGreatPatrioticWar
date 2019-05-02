@@ -9,6 +9,7 @@ namespace TheGreatPatrioticWar
 		public Faction faction;
         private float _infantry;
         private float _tanks;
+
 		public float Infantry { get =>_infantry; set => _infantry = value < 0 ? 0 : value; }
 		public float Tanks { get => _tanks; set => _tanks = value < 0 ? 0 : value; }
 

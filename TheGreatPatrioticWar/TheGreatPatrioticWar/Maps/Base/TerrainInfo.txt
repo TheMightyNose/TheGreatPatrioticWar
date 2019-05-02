@@ -1,0 +1,3 @@
+#Desert
+isWater = false
+bob5 = yes
