@@ -14,8 +14,8 @@ namespace TheGreatPatrioticWar
 		public static int height = 100;
 		public static int cellSize = 20;
 
-        static Text tekst = new Text();
-        static Font bobtabor = new Font(@"C:\Windows\Fonts\Arial.ttf");
+        static readonly Text tekst = new Text();
+        static readonly Font bobtabor = new Font(@"C:\Windows\Fonts\Arial.ttf");
 
 		public static Field[,] fields = new Field[width, height];
 
@@ -24,21 +24,12 @@ namespace TheGreatPatrioticWar
             tekst.Font = bobtabor;
             tekst.CharacterSize = "!Bob"[0];
 
-            Random bob = new Random();
-
             for (int y = 0; y < height; ++y)
             {
                 for (int x = 0; x < width; ++x)
                 {
-                    { //fields's sabe supasu
-                        fields[x, y] = new Field(x * cellSize, y * cellSize, null /*aka loser faction*/)
-                        {
-
-
-
-
-
-                        };
+                    {
+                        fields[x, y] = new Field(x * cellSize, y * cellSize, Faction.Germany);
                     }
                 }
             }

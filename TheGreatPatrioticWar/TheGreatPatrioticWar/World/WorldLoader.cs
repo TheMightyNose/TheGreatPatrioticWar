@@ -11,7 +11,7 @@ namespace TheGreatPatrioticWar
     static partial class World
     {
         //soft code   
-        const string TerrainInfoFile = "bla"; 
+        const string TerrainInfoFile = "TerrainInfo.txt"; 
         
         static Dictionary<string, Dictionary<string, string>> terrainData = new Dictionary<string, Dictionary<string, string>>();
 
@@ -23,7 +23,7 @@ namespace TheGreatPatrioticWar
 
             
                 //Read all the type of terrains 
-                var data = File.ReadAllLines("TerrainInfo.txt").Select(line => string.Concat(line.Replace("//","@").TakeWhile(ch => ch != '@').ToArray())).ToArray(); //MAKE THIS SOFT CODED
+                var data = File.ReadAllLines(TerrainInfoFile).Select(line => string.Concat(line.Replace("//","@").TakeWhile(ch => ch != '@').ToArray())).ToArray(); //MAKE THIS SOFT CODED
 
 
                 string currentTerrain = "";

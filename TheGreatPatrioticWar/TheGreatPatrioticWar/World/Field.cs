@@ -24,7 +24,7 @@ namespace TheGreatPatrioticWar
 		public int droppedBombs = 0;
         public int craters = 0;
 
-        //enum terrain schhh
+        public bool battleInProgress = false;
 
         public Field(int x, int y, Faction owner)
 		{
@@ -50,14 +50,14 @@ namespace TheGreatPatrioticWar
 			
 		}
 
-        public void Combat()
+        public bool Combat()
         {
             float defenderWeight = 0;
             float attackerWeight = 0;
             List<Army> defenderArmies = new List<Army>();
             List<Army> attackerArmies = new List<Army>();
             
-            foreach(Army army in armies)
+            foreach(Army army in armies.Where(x => x.daysUntilArrival == 0))
             {
                 if (army.faction.Alliance == owner.Alliance)
                 {
@@ -71,11 +71,11 @@ namespace TheGreatPatrioticWar
                 }
             }
 
-            if (attackerWeight == 0) return; //peace in our time
+            if (attackerWeight == 0) return false; //peace in our time
 
             if (defenderWeight == 0)
             {
-                owner = attackerArmies[0].faction; return; //anschluss
+                owner = attackerArmies[0].faction; return false; //anschluss
             }
 
             foreach(Army attacker in attackerArmies)
@@ -97,6 +97,8 @@ namespace TheGreatPatrioticWar
                     attacker.Tanks -= defenderAttack * attacker.TanksWeight / attackerWeight/attackerTankDefense;
                 }
             }
+
+            return true;
         }
 
         public override string ToString()
@@ -120,8 +122,11 @@ namespace TheGreatPatrioticWar
 
         public void Daily()
         {
+            armies.Where(x => x.daysUntilArrival > 0).ToList().ForEach(x => x.daysUntilArrival--);
+
+            battleInProgress = Combat();
+
             Army.MergeArmies(armies);
-            Combat();
         }
     }
 }

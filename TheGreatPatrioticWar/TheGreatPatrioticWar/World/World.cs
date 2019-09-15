@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SFML.System;
 using SFML.Graphics;
+using SFML.Window;
 
 namespace TheGreatPatrioticWar
 {
@@ -39,11 +40,24 @@ namespace TheGreatPatrioticWar
 
 		public static void Daily()
 		{
-            foreach(Field field in Grid.fields)
+            foreach (Field field in Grid.fields)
             {
                 field.Daily();
             }
-			++CurrentDay;
+
+            var gridPos = Camera.CameraToWorld(Camera.mousePos) / Grid.cellSize;
+
+            Field fromField = Grid.fields[(int)gridPos.X, (int)gridPos.Y];
+            Field toField = Grid.fields[(int)gridPos.X + 1, (int)gridPos.Y];
+
+            if (!fromField.battleInProgress && fromField.armies.Exists(x => x.faction.Alliance == Faction.ALLIANCE.USSR && x.daysUntilArrival == 0) && gridPos.X < Grid.width - 1 && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                fromField.armies[0].daysUntilArrival = 10;
+                toField.armies.Add(fromField.armies[0]);
+                fromField.armies.Clear();
+            }
+
+            ++CurrentDay;
 		}
 
 	}

@@ -13,7 +13,7 @@ namespace TheGreatPatrioticWar
 		public float Infantry { get =>_infantry; set => _infantry = value < 0 ? 0 : value; }
 		public float Tanks { get => _tanks; set => _tanks = value < 0 ? 0 : value; }
 
-		public int daysUntilArival = 0;
+		public int daysUntilArrival = 0;
 		//destination
 
 		public bool dead = false;
@@ -37,11 +37,11 @@ namespace TheGreatPatrioticWar
                 {
                     army.dead = true;
                 }
-				if (army.daysUntilArival == 0 && !army.dead)
+				if (army.daysUntilArrival == 0 && !army.dead)
 				{
 					foreach (Army secondArmy in armies)
 					{
-						if (army != secondArmy && army.faction == secondArmy.faction && secondArmy.daysUntilArival == 0 && !secondArmy.dead)
+						if (army != secondArmy && army.faction == secondArmy.faction && secondArmy.daysUntilArrival == 0 && !secondArmy.dead)
 						{
 							army.Infantry += secondArmy.Infantry;
 							army.Tanks += secondArmy.Tanks;

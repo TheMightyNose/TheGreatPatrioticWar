@@ -13,7 +13,7 @@ namespace TheGreatPatrioticWar
 	{
 
 		static Vector2f cameraSpeed = new Vector2f(0,0);
-		static float cameraMultiplier = 500;
+		const float cameraMultiplier = 500;
         public static Vector2f mousePos = new Vector2f(0, 0);
 
 		static readonly int moveMargin = 50;
